@@ -674,6 +674,9 @@ lastTutorialButton.addEventListener("click", () => {
     //Decrease of approval based on fossils
     if (totalPercentage < criticalEnergy) {
       approval -= Math.round((criticalEnergy - totalPercentage) * 0.2);
+      if(approval < 0){
+        approval = 0;
+      }
       textAnimation(approvalText, -Math.round((criticalEnergy - totalPercentage) * 0.2));
     }
     updateWidgetsColor();

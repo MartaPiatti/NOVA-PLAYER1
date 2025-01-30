@@ -473,7 +473,7 @@ const investmentData = {
         co2: -15,
         consenso: -13,
       },
-      titolo: "Advanced Energy Solutionsower",
+      titolo: "Advanced Energy Solutions",
       code: "5",
       opzioni: [
         {

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Energy Minister</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  </head>
+  <body>
+
+    <!-- Tutorial -->
+    <div class="tutorial1 tutorial">
+      <img class="tutorial-img" src="tutorial/01.png" alt="" />
+    </div>
+    <div class="tutorial2 tutorial">
+      <img class="tutorial-img" src="tutorial/02.png" alt=""/>
+    </div>
+    <div class="tutorial3 tutorial">
+      <div class="tutorial-img-container">
+        <img class="tutorial-img" src="tutorial/03.png" alt="" />
+      </div>
+    </div>
+    <div class="tutorial4 tutorial">
+      <div class="tutorial-img-container">
+        <img class="tutorial-img" src="tutorial/04.png" alt="" />
+      </div>
+    </div>
+    <div class="tutorial5 tutorial">
+      <div class="tutorial-img-container">
+        <img class="tutorial-img" src="tutorial/05.png" alt="" />
+      </div>
+    </div>
+    <div class="tutorial6 tutorial">
+      <div class="tutorial-img-container">
+        <img class="tutorial-img" src="tutorial/06.png" alt="" />
+      </div>
+    </div>
+
+    <div class="tutorial7 tutorial">
+      <div class="tutorial-img-container">
+        <button class="last-tutorial-button">START</button>
+      </div>
+    </div>
+
+    <!-- Score screen -->
+    <div class="score-screen">
+      <img class="game-over" src="game_over/won.png" alt="">
+    </div>
+
+    <!-- Energy minister interface -->
+    <div class="total-container">
+      <div class="pages">
+        <div class="page one">
+          <div class="container-widget">
+            <!-- Widgets container -->
+            <div class="row">
+              <!-- First row -->
+              <div class="box news score">
+                <!-- Widget news -->
+                <div class="titoletti">Latest News</div>
+                <div class="bottom-content">
+                  <div id="news-title" class="helvetica22">Global energy crisis sparks power shortages</div>
+                  <div id="news-text" class="bodyText">
+                    A global shortage in fossil fuel supplies has led to widespread power outages. Energy ministers are scrambling to meet rising demands as citizens express frustration over skyrocketing energy bills.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row score">
+              <!-- Second row -->
+              <div class="box year">
+                <!-- Widget year -->
+                <div class="titoletti">Year</div>
+                <div class="bottom-content">
+                  <div class="progress-bar"><div id="progress"></div></div>
+                  <div class="helvetica40" id="year">2025</div>
+                </div>
+              </div>
+              <div class="box budget">
+                <!-- Widget budget -->
+                <div class="titoletti">Budget</div>
+                <div class="bottom-content">
+                  <div class="budget-wrapper">
+                    <img class="icon" src="src/budget/budget.png" alt="budget" />
+                    <span id="budget-text" class="helvetica60 text-transition">100</span><span class="helvetica40 grey">M</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- Third row -->
+              <div class="box energy result">
+                <!-- Widget energy -->
+                <div class="titoletti">Energy Requirement</div>
+                <div class="bottom-content">
+                  <div class="chart">
+                    <!-- Energy graph -->
+                    <div class="chart-container" id="chart-container"></div>
+                    <div class="requirement">
+                      <p class="helvetica40"><span id="energy-percentage">65</span><span class="helvetica22 grey text-transition">%</span></p>
+                    </div>
+                  </div>
+                  <div class="info semiBold bodyText">
+                    <span><span class="dot dot-fossil"></span> Fossil Fuels</span>
+                    <span><span class="dot dot-renewable"></span> Renewable</span>
+                    <span><span class="dot dot-nuclear"></span> Nuclear</span>
+                  </div>
+                </div>
+              </div>
+              <div class="box approval-widget result">
+                <!-- Widget approval -->
+                <div class="titoletti">Public Approval</div>
+                <div class="vertical-flex">
+                  <img class="icon" src="src/approval/approval.png" alt="approval" />
+                  <div class="bottom-content"><span id="approval-text" class="helvetica60 text-transition">60</span><span class="helvetica40 grey">%</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- fourth row -->
+              <div class="box emission result">
+                <div class="titoletti">Emissions</div>
+                <div class="horizontal-flex">
+                  <div class="vertical-flex" style="gap: 5px">
+                    <div class="ppm-container">
+                      <span id="ppm-text" class="helvetica40 text-transition">440</span>
+                      <span class="helvetica22 grey">ppm</span>
+                    </div>
+                    <div><span id="degrees" class="helvetica60 text-transition">1.6&deg;</span><span class="helvetica40" style="color: #8c8a88">C</span></div>
+                  </div>
+                  <div id="container-pianeta"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Investiments page -->
+        <div class="page two">
+          <div class="scroll-container">
+            <!-- Renewables -->
+            <div class="card renewables">
+              <div class="helvetica30">Nuclear Plant</div>
+              <div class="card-parameters">
+                <div class="parameter">
+                  <div class="helvetica11">price</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">energy</div>
+                  <div class="helvetica22">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">co2</div>
+                  <div class="helvetica22">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">approval</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+              </div>
+            </div>
+            <!-- Fossil Fuels -->
+            <div class="card fossil">
+              <div class="helvetica30">Nuclear Plant</div>
+              <div class="card-parameters">
+                <div class="parameter">
+                  <div class="helvetica11">price</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">energy</div>
+                  <div class="helvetica22">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">co2</div>
+                  <div class="helvetica22">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">approval</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+              </div>
+            </div>
+            <!-- Nuclear -->
+            <div class="card nuclear">
+              <div class="helvetica30">Nuclear Plant</div>
+              <div class="card-parameters">
+                <div class="parameter">
+                  <div class="helvetica11">price</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">energy</div>
+                  <div class="helvetica22">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">co2</div>
+                  <div class="helvetica22">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">approval</div>
+                  <div class="helvetica22">param 1</div>
+                </div>
+              </div>
+            </div>
+            <!-- Public approval -->
+            <div class="card approval">
+              <div class="helvetica30">Nuclear Plant</div>
+              <div class="card-parameters">
+                <div class="parameter">
+                  <div class="helvetica11">price</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">energy</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">co2</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">approval</div>
+                  <div class="helvetica22">param 1</div>
+                </div>
+              </div>
+            </div>
+            <!-- Strategic assets -->
+            <div class="card grid">
+              <div class="helvetica30">Nuclear Plant</div>
+              <div class="card-parameters">
+                <div class="parameter">
+                  <div class="helvetica11">price</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">energy</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">co2</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+                <div class="parameter">
+                  <div class="helvetica11">approval</div>
+                  <div class="helvetica22-light">param 1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Toggle -->
+      <div id="toggle" class="toggle">
+        <button class="sinistra-button active">
+          <svg class="toggle-icon-sinistra-on" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect y="-0.000244141" width="9" height="12" rx="1" fill="#F2EFED" />
+            <rect x="10.9998" y="8.00024" width="9" height="12" rx="1" fill="#F2EFED" />
+            <rect y="14" width="9" height="6" rx="1" fill="#F2EFED" />
+            <rect x="11.0001" y="-0.000244141" width="9" height="6" rx="1" fill="#F2EFED" />
+          </svg>
+          <svg class="toggle-icon-sinistra-off" xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="0.5" y="14.5" width="8" height="5" rx="0.5" stroke="#0D0D0C" />
+            <rect x="0.5" y="0.5" width="8" height="11" rx="0.5" stroke="#0D0D0C" />
+            <rect x="11.4998" y="8.5" width="8" height="11" rx="0.5" stroke="#0D0D0C" />
+            <rect x="11.5" y="0.5" width="8" height="5" rx="0.5" stroke="#0D0D0C" />
+          </svg>
+        </button>
+        <button class="destra-button">
+          <svg class="toggle-icon-destra-on" xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" fill="none">
+            <path d="M3.65556 15.7044H0.455556C0.2 15.7044 0 15.4165 0 15.05V1.96303C0 1.5966 0.2 1.30869 0.455556 1.30869H3.65556V15.7044Z" fill="#F2EFED" />
+            <path d="M16.3444 1.30869H19.5444C19.8 1.30869 20 1.5966 20 1.96303V15.05C20 15.4165 19.8 15.7044 19.5444 15.7044H16.3444V1.30869Z" fill="#F2EFED" />
+            <path
+              d="M15.5556 0.562741V16.4373C15.5556 16.7513 15.3222 17 15.0556 17H4.94444C4.66666 17 4.44444 16.7513 4.44444 16.4373V0.562741C4.44444 0.248653 4.66666 0 4.94444 0H15.0444C15.3222 0 15.5444 0.248653 15.5444 0.562741H15.5556Z"
+              fill="#F2EFED"
+            />
+          </svg>
+          <svg class="toggle-icon-destra-off" xmlns="http://www.w3.org/2000/svg" width="22" height="19" viewBox="0 0 22 19" fill="none">
+            <path d="M4.33333 16.6923H1.41667C1.18333 16.6923 1 16.4046 1 16.0384V2.96152C1 2.59537 1.18333 2.30768 1.41667 2.30768H4.33333" stroke="#0C0C0C" />
+            <path d="M17.6667 2.30768H20.5833C20.8167 2.30768 21 2.59537 21 2.96152V16.0384C21 16.4046 20.8167 16.6923 20.5833 16.6923H17.6667" stroke="#0C0C0C" />
+            <path d="M16.5556 1.56667V17.4333C16.5556 17.7507 16.3232 18 16.0505 18H5.94949C5.66666 18 5.44444 17.7507 5.44444 17.4333V1.56667C5.44444 1.24933 5.66666 1 5.94949 1H16.0505C16.3232 1 16.5556 1.24933 16.5556 1.56667Z" stroke="#0C0C0C" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ------------------INVESTMENTS------------------ -->
+
+    <div class="fullscreen-div">
+      <!-- Feedback stamp -->
+      <div class="feedback-stamp">ACCEPTED</div>
+      <div class="inner-card">
+        <div class="helvetica40">Titolo investimento</div>
+        <div class="inner-card-parameters">
+          <div class="inner-parameter">
+            <div class="helvetica11">PRICE</div>
+            <div class="helvetica14 bold">12</div>
+          </div>
+
+          <div class="inner-parameter">
+            <div class="helvetica11">ENERGY</div>
+            <div class="helvetica14 bold">23</div>
+          </div>
+
+          <div class="inner-parameter">
+            <div class="helvetica11">CO2</div>
+            <div class="helvetica14 bold">3433</div>
+          </div>
+
+          <div class="inner-parameter">
+            <div class="helvetica11">PUBLIC APPROVAL</div>
+            <div class="helvetica14 bold">40%</div>
+          </div>
+        </div>
+        <!-- Renewables -->
+        <div class="investment-body">
+          <div class="helvetica22 section-title">Construction site</div>
+          <img class="green-map" src="green_maps/map1.png" alt="Example png" />
+          <div class="helvetica22 section-title">Preferred form of energy center</div>
+
+          <div class="button-grid">
+            <button class="renewable-button answer">Binary Cycle</button>
+            <button class="renewable-button answer">Binary Cycle</button>
+            <button class="renewable-button answer">Binary Cycle</button>
+            <button class="renewable-button answer">Binary Cycle</button>
+            <button class="renewable-button answer">Binary Cycle</button>
+            <button class="renewable-button answer">Binary Cycle</button>
+          </div>
+        </div>
+        <!-- Fossil -->
+        <div class="investment-body">
+          <div class="helvetica22 section-title">Resource type</div>
+          <img class="fossil-resource" src="fossil_resources/oil.png" alt="Example png" />
+          <div class="helvetica22 section-title">Where to import from</div>
+
+          <div class="fossil-import-container">
+            <div class="fossil-flag-container">
+              <img class="fossil-flag" src="fossil_flags/calbrana.png" alt="Example png" />
+              <div class="fossil-flag-text">Rivalries with nations allied to us have driven up prices.</div>
+              <button class="fossil-button answer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+                  <path d="M3.5 7.66711L7.59259 11.7597L16.5 2.85229" stroke="#0D0D0C" stroke-width="4" stroke-linecap="square" />
+                </svg>
+              </button>
+            </div>
+            <div class="fossil-flag-container">
+              <img class="fossil-flag" src="fossil_flags/calbrana.png" alt="Example png" />
+              <div class="fossil-flag-text">miao <span class="bold">maio</span></div>
+              <button class="fossil-button answer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+                  <path d="M3.5 7.66711L7.59259 11.7597L16.5 2.85229" stroke="#0D0D0C" stroke-width="4" stroke-linecap="square" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Nuclear -->
+        <div class="investment-body">
+          <div class="nuclear-title-container">
+            <div class="helvetica22 section-title">Step for nuclear plant</div>
+            <img class="nuclear-code" src="nuclear_codes/1.png" alt="Example png" />
+          </div>
+          <div class="nuclear-steps-container">
+            <div class="nuclear-step">Step 1</div>
+            <div class="nuclear-step">Step 2</div>
+            <div class="nuclear-step">Step 3</div>
+            <div class="nuclear-step">Step 4</div>
+            <div class="nuclear-step">Step 5</div>
+            <div class="nuclear-step">Step 6</div>
+          </div>
+          <div class="helvetica22 section-title">Order of procedure steps</div>
+          <div class="button-grid">
+            <button class="nuclear-button">Binary Cycle</button>
+            <button class="nuclear-button">Binary Cycle</button>
+            <button class="nuclear-button">Binary Cycle</button>
+            <button class="nuclear-button">Binary Cycle</button>
+            <button class="nuclear-button">Binary Cycle</button>
+            <button class="nuclear-button">Binary Cycle</button>
+          </div>
+        </div>
+        <!-- Public approval -->
+        <div class="investment-body">
+          <div class="helvetica22 section-title">Archetype</div>
+          <img class="archetype-graph" src="approval_archetypes/curiousLearner.png" alt="Example png" />
+          <div class="helvetica22 section-title">Selected media for campaign</div>
+          <div class="approval-grid">
+            <div class="approval-toggle-row">
+              <div class="approval-media helvetica14">Partnership</div>
+              <label class="approval-switch">
+                <input type="checkbox" unchecked />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="approval-toggle-row">
+              <div class="approval-media helvetica14">Partnership</div>
+              <label class="approval-switch">
+                <input type="checkbox" unchecked />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="approval-toggle-row">
+              <div class="approval-media helvetica14">Partnership</div>
+              <label class="approval-switch">
+                <input type="checkbox" unchecked />
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          <button class="approval-button answer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+              <path d="M3.5 7.66711L7.59259 11.7597L16.5 2.85229" stroke="#0D0D0C" stroke-width="4" stroke-linecap="square" />
+            </svg>
+          </button>
+        </div>
+        <!-- Strategic assets -->
+        <div class="investment-body">
+          <div class="helvetica22 section-title">Direct quotes</div>
+          <div class="grid-import-container">
+            <div class="grid-container">
+              <img class="grid-scientist" src="grid_scientists/grid.png" alt="Example png" />
+              <div class="grid-scientist-text">Rivalries with nations allied to us have driven up prices.</div>
+              <button class="grid-button answer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+                  <path d="M3.5 7.66711L7.59259 11.7597L16.5 2.85229" stroke="#0D0D0C" stroke-width="4" stroke-linecap="square" />
+                </svg>
+              </button>
+            </div>
+            <div class="grid-container">
+              <img class="grid-scientist" src="grid_scientists/building.png" alt="Example png" />
+              <div class="grid-scientist-text">Rivalries with nations allied to us have driven up prices.</div>
+              <button class="grid-button answer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+                  <path d="M3.5 7.66711L7.59259 11.7597L16.5 2.85229" stroke="#0D0D0C" stroke-width="4" stroke-linecap="square" />
+                </svg>
+              </button>
+            </div>
+            <div class="grid-container">
+              <img class="grid-scientist" src="grid_scientists/storage.png" alt="Example png" />
+              <div class="grid-scientist-text">Rivalries with nations allied to us have driven up prices.</div>
+              <button class="grid-button answer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+                  <path d="M3.5 7.66711L7.59259 11.7597L16.5 2.85229" stroke="#0D0D0C" stroke-width="4" stroke-linecap="square" />
+                </svg>
+              </button>
+            </div>
+            <div class="grid-container">
+              <img class="grid-scientist" src="grid_scientists/transport.png" alt="Example png" />
+              <div class="grid-scientist-text">Rivalries with nations allied to us have driven up prices.</div>
+              <button class="grid-button answer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+                  <path d="M3.5 7.66711L7.59259 11.7597L16.5 2.85229" stroke="#0D0D0C" stroke-width="4" stroke-linecap="square" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="investimenti.js"></script>
+    <script src="main.js"></script>
+    <script src="news.js"></script>
+  </body>
+</html>

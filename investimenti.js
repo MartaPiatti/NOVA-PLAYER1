@@ -305,7 +305,7 @@ const investmentData = {
 
       opzioni: [
         {
-          bandiera: "Paltrosia",
+          bandiera: "paltrosia",
           stato: 0,
           corretto: false,
         },

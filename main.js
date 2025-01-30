@@ -983,6 +983,9 @@ function updateWidget(result, parametri, type) {
         if(approval > 100){
           approval = 100;
         }
+        if(approval < 0) {
+          approval = 0;
+        }
         if (totalPercentage + parametri.energia > 100) {
           totalPercentage = 100;
         } else {

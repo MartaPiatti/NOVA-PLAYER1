@@ -925,9 +925,7 @@ canvas {
 }
 
 /*--------------TYPOGRAPHY-------------- */
-.bold {
-  font-weight: 500;
-}
+
 .your-score-text {
   text-transform: uppercase;
   font-size: 0.6875rem;
@@ -1022,4 +1020,8 @@ canvas {
 
 .grey {
   color: #8c8a88;
+}
+
+.italic {
+  font-style: italic;
 }

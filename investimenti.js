@@ -189,7 +189,7 @@ const investmentData = {
       parametri: {
         prezzo: 15,
         energia: 5,
-        co2: -100,
+        co2: -10,
         consenso: 4,
       },
       titolo: "Sustainable Energy Grid Upgrade",
@@ -619,10 +619,10 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 2,
-        energia: 5,
-        co2: 50,
-        consenso: 10000,
+        prezzo: 11,
+        energia: 0,
+        co2: 0,
+        consenso: 13,
       },
       titolo: "Expanding The General Knowledge",
       archetipo: "curiousLearner",
@@ -644,10 +644,10 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 2,
-        energia: 5,
-        co2: 50,
-        consenso: 10000,
+        prezzo: 12,
+        energia: 0,
+        co2: 0,
+        consenso: 15,
       },
       titolo: "Empowering Collective Action",
       archetipo: "passiveObserver",
@@ -669,10 +669,10 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 2,
-        energia: 5,
-        co2: 50,
-        consenso: 10000,
+        prezzo: 10,
+        energia: 0,
+        co2: 0,
+        consenso: 9,
       },
       titolo: "Investing in Next Voters ",
       archetipo: "innovationEnthusiast",
@@ -807,8 +807,8 @@ const investmentData = {
           corretto: false,
         },
         {
-          scienziato: "electrification",
-          frase: "Smart grids enable microgeneration, making every home a power plant”",
+          scienziato: "storage",
+          frase: "Energy storage is the backbone of renewable reliability",
           corretto: true,
         },
         {
@@ -838,8 +838,8 @@ const investmentData = {
           corretto: false,
         },
         {
-          scienziato: "building",
-          frase: "Rural electrification sparks economic growth and innovation",
+          scienziato: "electrification",
+          frase: "Smart grids enable microgeneration, making every home a power plant",
           corretto: false,
         },
         {

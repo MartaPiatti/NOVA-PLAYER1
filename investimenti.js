@@ -76,7 +76,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 45,
+        prezzo: 35,
         energia: 12,
         co2: -15,
         consenso: -2,
@@ -187,7 +187,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 15,
+        prezzo: 20,
         energia: 5,
         co2: -10,
         consenso: -4,
@@ -357,7 +357,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 60,
+        prezzo: 40,
         energia: 15,
         co2: -25,
         consenso: -12,
@@ -394,7 +394,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 55,
+        prezzo: 35,
         energia: 9,
         co2: -10,
         consenso: -7,
@@ -468,7 +468,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 25,
+        prezzo: 30,
         energia: 7,
         co2: -15,
         consenso: -13,
@@ -505,7 +505,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 20,
+        prezzo: 25,
         energia: 10,
         co2: -5,
         consenso: -8,
@@ -569,7 +569,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 9,
+        prezzo: 10,
         energia: 0,
         co2: 0,
         consenso: 11,
@@ -594,7 +594,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 8,
+        prezzo: 12,
         energia: 0,
         co2: 0,
         consenso: 10,
@@ -696,7 +696,7 @@ const investmentData = {
   grid: [
     {
       parametri: {
-        prezzo: 30,
+        prezzo: 20,
         energia: 0,
         co2: -10,
         consenso: 5,
@@ -727,7 +727,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 35,
+        prezzo: 20,
         energia: 0,
         co2: -12,
         consenso: 15,
@@ -758,7 +758,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 35,
+        prezzo: 25,
         energia: 0,
         co2: -12,
         consenso: 15,
@@ -789,7 +789,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 45,
+        prezzo: 30,
         energia: 0,
         co2: -18,
         consenso: 12,
@@ -820,7 +820,7 @@ const investmentData = {
     },
     {
       parametri: {
-        prezzo: 40,
+        prezzo: 35,
         energia: 0,
         co2: -15,
         consenso: 10,
